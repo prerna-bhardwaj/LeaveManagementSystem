@@ -1,0 +1,13 @@
+ - ResultSet in SQL is not Serializable
+ - The ResultSet does not "contain" the data. If you call rs.next() the ResultSet will get 
+   the data from the underlying (JDBC) connection to the database.
+ - This would be impossible, if the ResultSet was i.e. serialized and transferred to a 
+    different computer. There the connection would be unavailable.
+
+ - JDBC - store only those columns that are primary keys of other keys tables
+  - storing other than pk columns without fk reference to them will cause trouble when those 
+    values are altered in future.
+
+ - never forget rs.next() before you begin iterating values from it.. since the first row contains names of columns.
+
+ - for multiple sets in the update statement, separate them by commas (,) and not by the 'and' operator.
