@@ -1,0 +1,58 @@
+ ----> should not create > 1 input or output stream objects for a socket
+ - it will hang if you try to do so.
+ - Streams are stateful - when you read from a stream, you are reading from some position 
+    in the stream, and by doing that you change the position.
+ - If two things (like you're two wrapper ObjectInputStreams) are reading from the underlying 
+    stream at the same time, they will both try to change the position within the stream, but
+    neither one knows what the other is doing. So reading from one changes the position, and 
+    then the other one expects the stream to be where it left it, but it is not.
+ - Imagine you were getting this answer as words written on separate pieces of paper, being
+    given to you one-by-one. But while you are reading the pieces of paper, somebody else is 
+    taking some of them away before you have seen them - what you got would not make sense. 
+    That is what is happening - one stream takes away parts of the data, and when the other 
+    stream looks at the data again, some of it is missing, consumed by the other stream.
+- Have one ObjectInputStream that reads incoming objects. If you want to publish those objects
+    to multiple consumers, create a collection of things to send the incoming objects to, and 
+    iterate over them and pass the new object to each one.
+
+
+CONSTRUCTORS AND INHERITANCE : 
+ - call super class constructor from base class using 'super' keyword
+         (REFER Packet.java - PacketEmp and PacketMng classes)
+ - NOTE : call to super must be first statement in constructor
+
+
+ - if you are declaring constructors in a class, also declare an empty constructor - just in
+   case you create an empty object.
+   ( REFER Packet.java - all classes have an empty constructor defined)
+
+
+
+UNREACHABLE STATEMENTS - statements that won’t get executed during the execution of the program are called Unreachable Statements. These statements might be unreachable because of the following reasons:
+
+Have a return statement before them
+Have an infinite loop before them
+Any statements after throwing exception in a try block
+
+
+ - export CLASSPATH=/home/learning/JAVA
+ - give CLASSPATH = folder at 1 level higher than the one that contains the package
+
+
+ In Java, the java.lang.NullPointerException is thrown when a reference variable is 
+ accessed (or de-referenced) and is not pointing to any object. This error can be resolved 
+ by using a try-catch block or an if-else condition to check if a reference variable is 
+ null before dereferencing it.
+
+
+ // to-do (after my assign 2 presentation):
+   1. use hashtable for storing login credentials :     static Hashtable<String, String>authen = new Hashtable<>();
+   2. write comments in code
+
+// to-do (tom):
+   1. Practice presentation
+   2. Make list of things
+   3. Decide format of inputs 
+   4. Change color of vscode editor  -- done
+   5. remove the comments/ prev code
+
